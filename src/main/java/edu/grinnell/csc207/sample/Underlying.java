@@ -100,8 +100,12 @@ public class Underlying {
                 } else {
                     i--;
                 } //endif
-            } //endfor
-        } //endwhile
+            } //for
+        } //while
+
+        for (int i = 0; i < 0; i++) {
+            setBomb(board, array[i]);
+        } //for 
 
 
         return board; // STUB
