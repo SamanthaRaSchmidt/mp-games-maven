@@ -54,27 +54,175 @@ public class Underlying {
         return true;
     } // isFull(Integer[])
 
-
   // +--------------+------------------------------------------------
   // | Core methods |
   // +--------------+
 
-  public static void setBomb(Matrix<Integer> board, Integer val) {
-    int count = 0;
-
-    for(int i = 0; i < board.height(); i++) {
-        count++;
-        for(int j = 0; j < board.width(); j++) {
-            count++;
-            if (count == val) {
-                board.set(i, j, 100);
-            } //endif
-        } // endfor
-        if (count == val) {
-            board.set(i, j, 100);
+  /**
+   * Checks the 8 (or less if an edge square) surrounding squares for mines to calculate the number.
+   * @param board
+   *    The matrix with mines placed.
+   * @param row
+   *    The row of the square to be checked.
+   * @param col
+   *    The col of the square to be checked.
+   */
+  public static void checkMines(Matrix<Integer> board, int row, int col) {
+    Integer numMines = 0;
+    if(board.get(row, col) == null) {
+      if (row == 0) {
+        if(col == 0) {
+          if (board.get(row + 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col + 1) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } else if(col == board.width()) {
+          if (board.get(row, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } else {
+          if (board.get(row - 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col +1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
         } //endif
-    } //endfor
-  } // setBomb(Matrix<Integer>, Integer)
+      } else if(row == board.height()) {
+        if(col == 0) {
+          if (board.get(row - 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col + 1) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } else if(col == board.width()) {
+          if (board.get(row - 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } else {
+          if (board.get(row - 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } //endif
+        } else if(col == 0) {
+          if (board.get(row, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col + 1) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } else if(col == board.width()) {
+          if (board.get(row, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row - 1, col - 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row + 1, col + 1) == 100) {
+            numMines++;
+          } //endif
+          if (board.get(row, col + 1) == 100) {
+            numMines++;
+          } //endif
+          board.set(row, col, numMines);
+        } else {
+         for (int i = 0; i < 3; i++) {
+            if (board.get(row - 1, (col - 1) + i) == 100) {
+                numMines++;
+            } //endif
+        } //for
+
+        } //for
+
+        for (int i = 0; i < 3; i++) {
+            if (board.get(row + 1, (col - 1) + i) == 100) {
+                numMines++;
+            } //endif
+        } //for
+
+        if (board.get(row, (col - 1)) == 100) {
+            numMines++;
+        } //endif
+
+        if (board.get(row, (col - 1)) == 100) {
+            numMines++;
+        } //endif
+
+        board.set(row, col, numMines);
+      } //endif block
+  } // checkMines(Matrix<Integer>, int, int)
+
+
+
+  public static void setMine(Matrix<Integer> board, Integer val) {
+    int row = val / board.height();
+    int col = val / board.width();
+    if (col == 0){
+        col = board.width()-1;
+    } //endif
+    board.set(row, col, 100);
+    } // setMine(Matrix<Integer>, Integer)
 
 
     /**
@@ -90,7 +238,7 @@ public class Underlying {
 
         int totalSquares = width * height;
 
-        Integer[] array = new Integer[totalSquares / 4];
+        Integer[] array = new Integer[totalSquares / 6];
         while(!isFull(array)){
             for(int i = 0; i < array.length; i++) {
                 Random rand = new Random();
@@ -104,7 +252,7 @@ public class Underlying {
         } //while
 
         for (int i = 0; i < 0; i++) {
-            setBomb(board, array[i]);
+            setMine(board, array[i]);
         } //for 
 
 
