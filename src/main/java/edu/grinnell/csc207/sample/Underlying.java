@@ -14,12 +14,12 @@ public class Underlying {
   // | Static methods |
   // +----------------+
 
-  /*
+  /**
    * The default width.
    */
   static final int WIDTH_DEFAULT = 10;
 
-  /*
+  /**
    * The default height.
    */
   static final int HEIGHT_DEFAULT = 10;
@@ -36,6 +36,14 @@ public class Underlying {
   // | Helper methods |
   // +----------------+
 
+  /**
+   * Searches the array for an equal value.
+   * @param arr
+   *  The array to search through.
+   * @param val
+   *  The value searching for.
+   * @return true if found, false otherwise.
+   */
   public static boolean searchArray(Integer[] arr, int val) {
     for (int i = 0; i < arr.length; i++) {
       if (arr[i] == val) {
@@ -45,6 +53,12 @@ public class Underlying {
     return false;
   } // searchArray(int[], int)
 
+  /**
+   * Checks if the array is full.
+   * @param arr
+   *  The array to check.
+   * @return true if full, false otherwise.
+   */
   public static boolean isFull(Integer[] arr) {
     for (int i = 0; i < arr.length; i++) {
       if (arr[i] == null) {
@@ -70,11 +84,9 @@ public class Underlying {
    */
   public static void checkMines(Matrix<Integer> board, int row, int col) {
     Integer numMines = 0;
-    // Will only fill in non-mine and not aready checked spaces
     if (board.get(row, col) == null) {
       // Special case of the top edge
       if (row == 0) {
-        // Special case of the upper left corner
         if (col == 0) {
           if (board.get(row + 1, col) == 100) {
             numMines++;
@@ -86,7 +98,6 @@ public class Underlying {
             numMines++;
           } // endif
           board.set(row, col, numMines);
-          //Special case of the upper right corner
         } else if (col == board.width()) {
           if (board.get(row, col - 1) == 100) {
             numMines++;
@@ -98,7 +109,6 @@ public class Underlying {
             numMines++;
           } // endif
           board.set(row, col, numMines);
-          // The default upper edge
         } else {
           if (board.get(row - 1, col) == 100) {
             numMines++;
@@ -119,7 +129,6 @@ public class Underlying {
         } // endif
         // Special case of the bottom row
       } else if (row == board.height()) {
-        // Lower left corner
         if (col == 0) {
           if (board.get(row - 1, col) == 100) {
             numMines++;
@@ -131,7 +140,6 @@ public class Underlying {
             numMines++;
           } // endif
           board.set(row, col, numMines);
-          // Lower right corner
         } else if (col == board.width()) {
           if (board.get(row - 1, col) == 100) {
             numMines++;
@@ -143,7 +151,6 @@ public class Underlying {
             numMines++;
           } // endif
           board.set(row, col, numMines);
-          /// Bottom row
         } else {
           if (board.get(row - 1, col) == 100) {
             numMines++;
@@ -224,6 +231,13 @@ public class Underlying {
     } // endif block
   } // checkMines(Matrix<Integer>, int, int)
 
+  /**
+   * Converts an Integer to a row and col to add mines to the board.
+   * @param board
+   *  The underlying board the mines will be set in.
+   * @param val
+   *  The random Integer that will be turned into a row and col.
+   */
   public static void setMine(Matrix<Integer> board, Integer val) {
     int row = val / board.height();
     int col = val % board.width();
