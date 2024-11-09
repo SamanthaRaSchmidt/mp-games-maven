@@ -7,7 +7,7 @@ import java.util.Random;
 
 /**
  * Creates a matrix that will not be shown. This will have the randomly generated
- * mine placement and caluclate the number of mines around a cell.
+ * mine placement and calculate the number of mines around a cell.
  */
 public class Underlying {
   // +----------------+----------------------------------------------
@@ -46,7 +46,9 @@ public class Underlying {
    */
   public static boolean searchArray(Integer[] arr, int val) {
     for (int i = 0; i < arr.length; i++) {
-      if (arr[i] == val) {
+      if(arr[i] == null) {
+        return false;
+      } else if (arr[i] == val) {
         return true;
       } // endif
     } // endfor
@@ -84,7 +86,7 @@ public class Underlying {
    */
   public static void checkMines(Matrix<Integer> board, int row, int col) {
     Integer numMines = 0;
-    if (board.get(row, col) == null) {
+    if (board.get(row, col) == 9) {
       // Special case of the top edge
       if (row == 0) {
         if (col == 0) {
@@ -98,7 +100,7 @@ public class Underlying {
             numMines++;
           } // endif
           board.set(row, col, numMines);
-        } else if (col == board.width()) {
+        } else if (col == board.width() - 1) {
           if (board.get(row, col - 1) == 100) {
             numMines++;
           } // endif
@@ -110,13 +112,10 @@ public class Underlying {
           } // endif
           board.set(row, col, numMines);
         } else {
-          if (board.get(row - 1, col) == 100) {
+          if (board.get(row, col - 1) == 100) {
             numMines++;
           } // endif
-          if (board.get(row - 1, col + 1) == 100) {
-            numMines++;
-          } // endif
-          if (board.get(row, col + 1) == 100) {
+          if (board.get(row + 1, col - 1) == 100) {
             numMines++;
           } // endif
           if (board.get(row + 1, col) == 100) {
@@ -125,10 +124,12 @@ public class Underlying {
           if (board.get(row + 1, col + 1) == 100) {
             numMines++;
           } // endif
+          if (board.get(row, col + 1) == 100) {
+            numMines++;
+          } // endif
           board.set(row, col, numMines);
         } // endif
-        // Special case of the bottom row
-      } else if (row == board.height()) {
+      }  else if (row == board.height() - 1) {
         if (col == 0) {
           if (board.get(row - 1, col) == 100) {
             numMines++;
@@ -140,14 +141,14 @@ public class Underlying {
             numMines++;
           } // endif
           board.set(row, col, numMines);
-        } else if (col == board.width()) {
+        } else if (col == board.width() - 1) {
           if (board.get(row - 1, col) == 100) {
             numMines++;
           } // endif
           if (board.get(row - 1, col - 1) == 100) {
             numMines++;
           } // endif
-          if (board.get(row, col) == 100) {
+          if (board.get(row, col - 1) == 100) {
             numMines++;
           } // endif
           board.set(row, col, numMines);
@@ -161,22 +162,16 @@ public class Underlying {
           if (board.get(row, col - 1) == 100) {
             numMines++;
           } // endif
-          if (board.get(row + 1, col) == 100) {
+          if (board.get(row, col + 1) == 100) {
             numMines++;
           } // endif
-          if (board.get(row + 1, col + 1) == 100) {
+          if (board.get(row - 1, col + 1) == 100) {
             numMines++;
           } // endif
           board.set(row, col, numMines);
         } // endif
         // Left col
       } else if (col == 0) {
-        if (board.get(row, col - 1) == 100) {
-          numMines++;
-        } // endif
-        if (board.get(row + 1, col - 1) == 100) {
-          numMines++;
-        } // endif
         if (board.get(row - 1, col) == 100) {
           numMines++;
         } // endif
@@ -186,35 +181,40 @@ public class Underlying {
         if (board.get(row, col + 1) == 100) {
           numMines++;
         } // endif
-        board.set(row, col, numMines);
-        // Right col
-      } else if (col == board.width()) {
-        if (board.get(row, col - 1) == 100) {
-          numMines++;
-        } // endif
-        if (board.get(row - 1, col - 1) == 100) {
+        if (board.get(row + 1, col + 1) == 100) {
           numMines++;
         } // endif
         if (board.get(row + 1, col) == 100) {
           numMines++;
         } // endif
-        if (board.get(row + 1, col + 1) == 100) {
+        board.set(row, col, numMines);
+        // Right col
+      } else if (col == board.width() - 1) {
+        if (board.get(row - 1, col) == 100) {
           numMines++;
         } // endif
-        if (board.get(row, col + 1) == 100) {
+        if (board.get(row - 1, col - 1) == 100) {
+          numMines++;
+        } // endif
+        if (board.get(row, col - 1) == 100) {
+          numMines++;
+        } // endif
+        if (board.get(row + 1, col - 1) == 100) {
+          numMines++;
+        } // endif
+        if (board.get(row + 1, col) == 100) {
           numMines++;
         } // endif
         board.set(row, col, numMines);
-        // Literally every other case
-      } else {
+      } // Literally every other case
+       else {
         for (int i = 0; i < 3; i++) {
-          if (board.get(row - 1, (col - 1) + i) == 100) {
+          if (board.get(row - 1, ((col - 1) + i)) == 100) {
             numMines++;
           } // endif
         } // for
-      } // for
       for (int i = 0; i < 3; i++) {
-        if (board.get(row + 1, (col - 1) + i) == 100) {
+        if (board.get(row + 1, ((col - 1) + i)) == 100) {
           numMines++;
         } // endif
       } // for
@@ -223,13 +223,13 @@ public class Underlying {
         numMines++;
       } // endif
 
-      if (board.get(row, (col - 1)) == 100) {
+      if (board.get(row, (col + 1)) == 100) {
         numMines++;
       } // endif
 
       board.set(row, col, numMines);
     } // endif block
-  } // checkMines(Matrix<Integer>, int, int)
+  } } // checkMines(Matrix<Integer>, int, int)
 
   /**
    * Converts an Integer to a row and col to add mines to the board.
@@ -257,7 +257,7 @@ public class Underlying {
    * @return the randomized matrix board.
    */
   static Matrix<Integer> setupBoard(int width, int height) {
-    Matrix<Integer> board = new MatrixV0<Integer>(width, height, 0);
+    Matrix<Integer> board = new MatrixV0<Integer>(width, height, 9);
 
     int totalSquares = width * height;
 

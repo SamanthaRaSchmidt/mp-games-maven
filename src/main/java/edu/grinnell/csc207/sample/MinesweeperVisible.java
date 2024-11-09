@@ -38,10 +38,10 @@ public class MinesweeperVisible {
         Your game board is a grid containing randomly placed mines
         hidden from your eyes. Mines are represented by 100's.
 
-        Your goal is to click through as manys safe spaces as you can.
+        Your goal is to click through as many safe spaces as you can.
 
         Each turn you will enter the row and column number you wish to reveal.
-        Our row and column start at 1.
+        Our row and column start at 0.
         You can only enter numbers 1- max row / max column number.
 
         After each move, the surrounding blocks will reveal the number of mines near them.
@@ -109,357 +109,370 @@ public class MinesweeperVisible {
   public static void checkNums(Matrix<Integer> uboard, Matrix<Integer> sboard, int row, int col) {
     // First letter: U for "upper", M for "middle", B for "bottom", C for "center"
     // Second letter: L for "left", R for "right", T for "top", B for "Bottom"
-    Integer ul = uboard.get(row - 1, col - 1);
-    Integer ml = uboard.get(row, col - 1);
-    Integer bl = uboard.get(row + 1, col - 1);
-    Integer ct = uboard.get(row - 1, col);
-    Integer cb = uboard.get(row + 1, col);
-    Integer ur = uboard.get(row - 1, col + 1);
-    Integer mr = uboard.get(row, col + 1);
-    Integer br = uboard.get(row + 1, col + 1);
 
     // Special case of the top edge
     if (row == 0) {
       // Special case of the upper left corner
       if (col == 0) {
         if (sboard.get(row, col + 1) == null) {
-          if (mr == 0) {
+          if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
             checkNums(uboard, sboard, row, col + 1);
           } else {
-            sboard.set(row, col + 1, mr);
+            sboard.set(row, col + 1, uboard.get(row, col + 1));
           } // endif
         } // endif - mid right
         if (sboard.get(row + 1, col + 1) == null) {
-          if (br == 0) {
+          if (uboard.get(row + 1, col + 1) == 0) {
             sboard.set(row + 1, col + 1, 0);
             checkNums(uboard, sboard, row + 1, col + 1);
           } else {
-            sboard.set(row + 1, col + 1, br);
+            sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
           } // endif
         } // endif - bottom right
         if (sboard.get(row + 1, col) == null) {
-          if (cb == 0) {
+          if (uboard.get(row + 1, col) == 0) {
             sboard.set(row + 1, col, 0);
             checkNums(uboard, sboard, row + 1, col);
           } else {
-            sboard.set(row + 1, col, cb);
+            sboard.set(row + 1, col, uboard.get(row + 1, col));
           } // endif
         } // endif - center bottom
           // Special case of the upper right corner
-      } else if (col == sboard.width()) {
+      } 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      else if (col == sboard.width() - 1) {
         if (sboard.get(row, col - 1) == null) {
-          if (ml == 0) {
+          if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
             checkNums(uboard, sboard, row, col - 1);
           } else {
-            sboard.set(row, col - 1, ml);
+            sboard.set(row, col - 1, uboard.get(row, col - 1));
           } // endif
         } // endif - middle left
         if (sboard.get(row + 1, col - 1) == null) {
-          if (bl == 0) {
+          if (uboard.get(row + 1, col - 1) == 0) {
             sboard.set(row + 1, col - 1, 0);
             checkNums(uboard, sboard, row + 1, col - 1);
           } else {
-            sboard.set(row + 1, col - 1, bl);
+            sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
           } // endif
         } // endif - bottom left
         if (sboard.get(row + 1, col) == null) {
-          if (cb == 0) {
+          if (uboard.get(row + 1, col) == 0) {
             sboard.set(row + 1, col, 0);
             checkNums(uboard, sboard, row + 1, col);
           } else {
-            sboard.set(row + 1, col, cb);
+            sboard.set(row + 1, col, uboard.get(row + 1, col));
           } // endif
         } // endif - center bottom
           // The default upper edge
       } else {
         if (sboard.get(row, col - 1) == null) {
-          if (ml == 0) {
+          if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
             checkNums(uboard, sboard, row, col - 1);
           } else {
-            sboard.set(row, col - 1, ml);
+            sboard.set(row, col - 1, uboard.get(row, col - 1));
           } // endif
         } // endif - middle left
         if (sboard.get(row + 1, col - 1) == null) {
-          if (bl == 0) {
+          if (uboard.get(row + 1, col - 1) == 0) {
             sboard.set(row + 1, col - 1, 0);
             checkNums(uboard, sboard, row + 1, col - 1);
           } else {
-            sboard.set(row + 1, col - 1, bl);
+            sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
           } // endif
         } // endif - bottom left
         if (sboard.get(row + 1, col) == null) {
-          if (cb == 0) {
+          if (uboard.get(row + 1, col) == 0) {
             sboard.set(row + 1, col, 0);
             checkNums(uboard, sboard, row + 1, col);
           } else {
-            sboard.set(row + 1, col, cb);
+            sboard.set(row + 1, col, uboard.get(row + 1, col));
           } // endif
         } // endif - center bottom
         if (sboard.get(row, col + 1) == null) {
-          if (mr == 0) {
+          if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
             checkNums(uboard, sboard, row, col + 1);
           } else {
-            sboard.set(row, col + 1, mr);
+            sboard.set(row, col + 1, uboard.get(row, col + 1));
           } // endif
         } // endif - mid right
         if (sboard.get(row + 1, col + 1) == null) {
-          if (br == 0) {
+          if (uboard.get(row + 1, col + 1) == 0) {
             sboard.set(row + 1, col + 1, 0);
             checkNums(uboard, sboard, row + 1, col + 1);
           } else {
-            sboard.set(row + 1, col + 1, br);
+            sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
           } // endif
         } // endif - bottom right
       } // endif - top row
       // Special case of the bottom row
-    } else if (row == sboard.height()) {
+    } else if (row == sboard.height() - 1
+  ) {
       // Lower left corner
       if (col == 0) {
         if (sboard.get(row - 1, col) == null) {
-          if (ct == 0) {
+          if (uboard.get(row - 1, col) == 0) {
             sboard.set(row - 1, col, 0);
             checkNums(uboard, sboard, row - 1, col);
           } else {
-            sboard.set(row - 1, col, ct);
+            sboard.set(row - 1, col, uboard.get(row - 1, col));
           } // endif
         } // endif - center top
         if (sboard.get(row, col + 1) == null) {
-          if (mr == 0) {
+          if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
             checkNums(uboard, sboard, row, col + 1);
           } else {
-            sboard.set(row, col + 1, mr);
+            sboard.set(row, col + 1, uboard.get(row, col + 1));
           } // endif
         } // endif - mid right
         if (sboard.get(row - 1, col + 1) == null) {
-          if (ur == 0) {
+          if (uboard.get(row - 1, col + 1) == 0) {
             sboard.set(row - 1, col + 1, 0);
             checkNums(uboard, sboard, row - 1, col + 1);
           } else {
-            sboard.set(row - 1, col + 1, ur);
+            sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
           } // endif
         } // endif - upper right
         // Lower right corner
-      } else if (col == sboard.width()) {
+      } else if (col == sboard.width() - 1) {
         if (sboard.get(row - 1, col) == null) {
-          if (ct == 0) {
+          if (uboard.get(row - 1, col) == 0) {
             sboard.set(row - 1, col, 0);
             checkNums(uboard, sboard, row - 1, col);
           } else {
-            sboard.set(row - 1, col, ct);
+            sboard.set(row - 1, col, uboard.get(row - 1, col));
           } // endif
         } // endif - center top
         if (sboard.get(row, col - 1) == null) {
-          if (ml == 0) {
+          if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
             checkNums(uboard, sboard, row, col - 1);
           } else {
-            sboard.set(row, col - 1, ml);
+            sboard.set(row, col - 1, uboard.get(row, col - 1));
           } // endif
         } // endif - mid left
         if (sboard.get(row - 1, col - 1) == null) {
-          if (ur == 0) {
+          if (uboard.get(row - 1, col + 1) == 0) {
             sboard.set(row - 1, col - 1, 0);
             checkNums(uboard, sboard, row - 1, col - 1);
           } else {
-            sboard.set(row - 1, col - 1, ur);
+            sboard.set(row - 1, col - 1, uboard.get(row - 1, col + 1));
           } // endif
         } // endif - upper right
         /// Bottom row
       } else {
         if (sboard.get(row - 1, col) == null) {
-          if (ct == 0) {
+          if (uboard.get(row - 1, col) == 0) {
             sboard.set(row - 1, col, 0);
             checkNums(uboard, sboard, row - 1, col);
           } else {
-            sboard.set(row - 1, col, ct);
+            sboard.set(row - 1, col, uboard.get(row - 1, col));
           } // endif
         } // endif - center top
         if (sboard.get(row, col + 1) == null) {
-          if (mr == 0) {
+          if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
             checkNums(uboard, sboard, row, col + 1);
           } else {
-            sboard.set(row, col + 1, mr);
+            sboard.set(row, col + 1, uboard.get(row, col + 1));
           } // endif
         } // endif - mid right
         if (sboard.get(row - 1, col + 1) == null) {
-          if (ur == 0) {
+          if (uboard.get(row - 1, col + 1) == 0) {
             sboard.set(row - 1, col + 1, 0);
             checkNums(uboard, sboard, row - 1, col + 1);
           } else {
-            sboard.set(row - 1, col + 1, ur);
+            sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
           } // endif
         } // endif - upper right
         if (sboard.get(row, col - 1) == null) {
-          if (ml == 0) {
+          if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
             checkNums(uboard, sboard, row, col - 1);
           } else {
-            sboard.set(row, col - 1, ml);
+            sboard.set(row, col - 1, uboard.get(row, col - 1));
           } // endif
         } // endif - mid left
         if (sboard.get(row - 1, col - 1) == null) {
-          if (ul == 0) {
+          if (uboard.get(row - 1, col - 1) == 0) {
             sboard.set(row - 1, col - 1, 0);
             checkNums(uboard, sboard, row - 1, col - 1);
           } else {
-            sboard.set(row - 1, col - 1, ul);
+            sboard.set(row - 1, col - 1, uboard.get(row - 1, col - 1));
           } // endif
         } // endif - upper left
       } // endif
       // Left col
     } else if (col == 0) {
       if (sboard.get(row - 1, col) == null) {
-        if (ct == 0) {
+        if (uboard.get(row - 1, col) == 0) {
           sboard.set(row - 1, col, 0);
           checkNums(uboard, sboard, row - 1, col);
         } else {
-          sboard.set(row - 1, col, ct);
+          sboard.set(row - 1, col, uboard.get(row - 1, col));
         } // endif
       } // endif - center top
       if (sboard.get(row + 1, col) == null) {
-        if (cb == 0) {
+        if (uboard.get(row + 1, col) == 0) {
           sboard.set(row + 1, col, 0);
           checkNums(uboard, sboard, row + 1, col);
         } else {
-          sboard.set(row + 1, col, cb);
+          sboard.set(row + 1, col, uboard.get(row + 1, col));
         } // endif
       } // endif - center bottom
       if (sboard.get(row - 1, col + 1) == null) {
-        if (ur == 0) {
+        if (uboard.get(row - 1, col + 1) == 0) {
           sboard.set(row - 1, col + 1, 0);
           checkNums(uboard, sboard, row - 1, col + 1);
         } else {
-          sboard.set(row - 1, col + 1, ur);
+          sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
         } // endif
       } // endif - upper right
       if (sboard.get(row, col + 1) == null) {
-        if (mr == 0) {
+        if (uboard.get(row, col + 1) == 0) {
           sboard.set(row, col + 1, 0);
           checkNums(uboard, sboard, row, col + 1);
         } else {
-          sboard.set(row, col + 1, mr);
+          sboard.set(row, col + 1, uboard.get(row, col + 1));
         } // endif
       } // endif - mid right
       if (sboard.get(row + 1, col + 1) == null) {
-        if (br == 0) {
+        if (uboard.get(row + 1, col + 1) == 0) {
           sboard.set(row + 1, col + 1, 0);
           checkNums(uboard, sboard, row + 1, col + 1);
         } else {
-          sboard.set(row + 1, col + 1, br);
+          sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
         } // endif
       } // endif - bottom right
       // Right col
-    } else if (col == sboard.width()) {
+    } else if (col == sboard.width() - 1) {
       if (sboard.get(row - 1, col) == null) {
-        if (ct == 0) {
+        if (uboard.get(row - 1, col) == 0) {
           sboard.set(row - 1, col, 0);
           checkNums(uboard, sboard, row - 1, col);
         } else {
-          sboard.set(row - 1, col, ct);
+          sboard.set(row - 1, col, uboard.get(row - 1, col));
         } // endif
       } // endif - center top
       if (sboard.get(row + 1, col) == null) {
-        if (cb == 0) {
+        if (uboard.get(row + 1, col) == 0) {
           sboard.set(row + 1, col, 0);
           checkNums(uboard, sboard, row + 1, col);
         } else {
-          sboard.set(row + 1, col, cb);
+          sboard.set(row + 1, col, uboard.get(row + 1, col));
         } // endif
       } // endif - center bottom
       if (sboard.get(row - 1, col - 1) == null) {
-        if (ul == 0) {
+        if (uboard.get(row - 1, col - 1) == 0) {
           sboard.set(row - 1, col - 1, 0);
           checkNums(uboard, sboard, row - 1, col - 1);
         } else {
-          sboard.set(row - 1, col - 1, ul);
+          sboard.set(row - 1, col - 1, uboard.get(row - 1, col - 1));
         } // endif
       } // endif - upper left
       if (sboard.get(row, col - 1) == null) {
-        if (ml == 0) {
+        if (uboard.get(row, col - 1) == 0) {
           sboard.set(row, col - 1, 0);
           checkNums(uboard, sboard, row, col - 1);
         } else {
-          sboard.set(row, col - 1, ml);
+          sboard.set(row, col - 1, uboard.get(row, col - 1));
         } // endif
       } // endif - mid left
       if (sboard.get(row + 1, col - 1) == null) {
-        if (bl == 0) {
+        if (uboard.get(row + 1, col - 1) == 0) {
           sboard.set(row + 1, col - 1, 0);
           checkNums(uboard, sboard, row + 1, col - 1);
         } else {
-          sboard.set(row + 1, col - 1, bl);
+          sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
         } // endif
       } // endif - bottom left
       // Literally every other case
     } else {
       if (sboard.get(row - 1, col) == null) {
-        if (ct == 0) {
+        if (uboard.get(row - 1, col) == 0) {
           sboard.set(row - 1, col, 0);
           checkNums(uboard, sboard, row - 1, col);
         } else {
-          sboard.set(row - 1, col, ct);
+          sboard.set(row - 1, col, uboard.get(row - 1, col));
         } // endif
       } // endif - center top
       if (sboard.get(row + 1, col) == null) {
-        if (cb == 0) {
+        if (uboard.get(row + 1, col) == 0) {
           sboard.set(row + 1, col, 0);
           checkNums(uboard, sboard, row + 1, col);
         } else {
-          sboard.set(row + 1, col, cb);
+          sboard.set(row + 1, col, uboard.get(row + 1, col));
         } // endif
       } // endif - center bottom
       if (sboard.get(row - 1, col - 1) == null) {
-        if (ul == 0) {
+        if (uboard.get(row - 1, col - 1)== 0) {
           sboard.set(row - 1, col - 1, 0);
           checkNums(uboard, sboard, row - 1, col - 1);
         } else {
-          sboard.set(row - 1, col - 1, ul);
+          sboard.set(row - 1, col - 1, sboard.get(row - 1, col - 1));
         } // endif
       } // endif - upper left
       if (sboard.get(row, col - 1) == null) {
-        if (ml == 0) {
+        if (uboard.get(row, col - 1) == 0) {
           sboard.set(row, col - 1, 0);
           checkNums(uboard, sboard, row, col - 1);
         } else {
-          sboard.set(row, col - 1, ml);
+          sboard.set(row, col - 1, uboard.get(row, col - 1));
         } // endif
       } // endif - mid left
       if (sboard.get(row + 1, col - 1) == null) {
-        if (bl == 0) {
+        if (uboard.get(row + 1, col - 1) == 0) {
           sboard.set(row + 1, col - 1, 0);
           checkNums(uboard, sboard, row + 1, col - 1);
         } else {
-          sboard.set(row + 1, col - 1, bl);
+          sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
         } // endif
       } // endif - bottom left
       if (sboard.get(row - 1, col + 1) == null) {
-        if (ur == 0) {
+        if (uboard.get(row - 1, col + 1) == 0) {
           sboard.set(row - 1, col + 1, 0);
           checkNums(uboard, sboard, row - 1, col + 1);
         } else {
-          sboard.set(row - 1, col + 1, ur);
+          sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
         } // endif
       } // endif - upper right
       if (sboard.get(row, col + 1) == null) {
-        if (mr == 0) {
+        if (uboard.get(row, col + 1) == 0) {
           sboard.set(row, col + 1, 0);
           checkNums(uboard, sboard, row, col + 1);
         } else {
-          sboard.set(row, col + 1, mr);
+          sboard.set(row, col + 1, uboard.get(row, col + 1));
         } // endif
       } // endif - mid right
       if (sboard.get(row + 1, col + 1) == null) {
-        if (br == 0) {
+        if (uboard.get(row + 1, col + 1) == 0) {
           sboard.set(row + 1, col + 1, 0);
           checkNums(uboard, sboard, row + 1, col + 1);
         } else {
-          sboard.set(row + 1, col + 1, br);
+          sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
         } // endif
       } // endif - bottom right
     } // endif
@@ -473,7 +486,7 @@ public class MinesweeperVisible {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
-    int defaultHeight = 10;
+      int defaultHeight = 10;
     int defaultWidth = 10;
     PrintWriter pen = new PrintWriter(System.out, true);
     BufferedReader eyes = new BufferedReader(new InputStreamReader(System.in));
@@ -523,17 +536,18 @@ public class MinesweeperVisible {
     eyes.readLine();
 
     // Set up the board
-    Matrix<Integer> uboard = new MatrixV0<Integer>(width, height);
+    Matrix<Integer> uboard = Underlying.setupBoard(width, height);
     Matrix<Integer> sboard = new MatrixV0<Integer>(width, height);
     for (int i = 0; i < sboard.height(); i++) {
       for (int k = 0; k < sboard.width(); k++) {
         sboard.set(i, k, null);
-      } // for
+      }
+    } // for
 
       // Run the game
       pen.println(sboard);
-      Integer row = 0;
-      Integer col = 0;
+      int row = 0;
+      int col = 0;
       String userInput = "";
       int space;
       boolean badInput = true;
@@ -547,16 +561,19 @@ public class MinesweeperVisible {
             continue;
           } // endif
           row = Integer.parseInt(userInput.substring(0, space)); // try catch invalid input do ?
-          col = Integer.parseInt(userInput.substring(space));
+          col = Integer.parseInt(userInput.substring(space + 1));
           badInput = false;
         } catch (NumberFormatException e) {
           System.err.printf("You did not give me a number Try again");
+          badInput = true;
           continue;
 
         } catch (Exception e) {
           System.err.printf("Some other exception. Print valid Numbers!");
+          badInput = true;
           continue;
         } // catches
+
       } // try/catch
 
       boolean done = false;
@@ -564,34 +581,37 @@ public class MinesweeperVisible {
         if (hasBomb(row, col, uboard)) {
           done = true;
           printResults(pen, uboard);
+          pen.println("You died :'( ");
         } else {
           checkNums(uboard, sboard, row, col);
           Matrix.print(pen, sboard);
-          pen.println("Good job, you didn't die :) now pick another box.");
+          pen.println("Good job, you didn't die :) now hit return then pick another box.");
           badInput = true;
+          userInput = eyes.readLine();
           while (badInput) {
             try {
               userInput = eyes.readLine();
               space = userInput.indexOf(" ");
               if (space == -1) {
-                System.err
-                    .println("Incorrect number of inputs please try again. Please do -> ROW COL");
+                System.err.println("Incorrect number of inputs please try again. Please do -> ROW COL");
                 continue;
               } // endif
               row = Integer.parseInt(userInput.substring(0, space)); // try catch invalid input do ?
-              col = Integer.parseInt(userInput.substring(space));
+              col = Integer.parseInt(userInput.substring(space + 1));
               badInput = false;
             } catch (NumberFormatException e) {
               System.err.printf("You did not give me a number Try again");
+              badInput = true;
               continue;
-
+    
             } catch (Exception e) {
               System.err.printf("Some other exception. Print valid Numbers!");
+              badInput = true;
               continue;
-            } // catch
+            } // catches
+    
           } // try/catch
         } // endif
       } // while
-    } // for
   } // main(String[])
 } // class MinesweepVisible
