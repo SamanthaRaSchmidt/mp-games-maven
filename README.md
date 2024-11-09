@@ -12,9 +12,27 @@ Authors:
 
 Instructions:
 
-* **Please add instructions for running the game**
+*  Welcome to Minesweeper.
 
-To be updated.
+        Command-line arguments:
+
+        * -w width - set up the width of the board
+        * -h height - set up the height of the board
+
+        Your game board is a grid containing randomly placed mines
+        hidden from your eyes. Mines are represented by 100's.
+
+        Your goal is to click through as many safe spaces as you can.
+
+        Each turn you will enter the row and column number you wish to reveal.
+        Our row and column start at 0.
+        You can only enter numbers 0 to max row / max column number.
+
+        After each move, the surrounding blocks will reveal the number of mines near them.
+        If you click a mine, you die.
+        GAME OVER
+*
+
 
 Acknowledgements:
 - Caelan Evening Tutors 

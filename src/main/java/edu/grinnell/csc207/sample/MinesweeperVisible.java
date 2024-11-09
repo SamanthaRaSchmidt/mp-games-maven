@@ -42,7 +42,7 @@ public class MinesweeperVisible {
 
         Each turn you will enter the row and column number you wish to reveal.
         Our row and column start at 0.
-        You can only enter numbers 1- max row / max column number.
+        You can only enter numbers 0 to max row / max column number.
 
         After each move, the surrounding blocks will reveal the number of mines near them.
         If you click a mine, you die.
