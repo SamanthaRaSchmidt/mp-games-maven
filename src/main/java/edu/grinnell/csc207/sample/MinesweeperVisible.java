@@ -47,12 +47,6 @@ public class MinesweeperVisible {
         After each move, the surrounding blocks will reveal the number of mines near them.
         If you click a mine, you die.
         GAME OVER
-
-            1|6|7|
-            -+-+-
-            5|*|4
-            -+-+-
-            8|3|2
         """);
   } // printInstructions(PrintWriter)
 
