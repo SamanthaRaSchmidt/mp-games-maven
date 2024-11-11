@@ -58,6 +58,7 @@ public class MinesweeperVisible {
    */
   static void printResults(PrintWriter pen, Matrix<Integer> board) {
     Matrix.print(pen, board, true);
+    
   } // printResults
 
   /**
@@ -107,9 +108,10 @@ public class MinesweeperVisible {
    *               The col of the square to be checked.
    */
   public static void checkNums(Matrix<Integer> uboard, Matrix<Integer> sboard, int row, int col) {
-    // First letter: U for "upper", M for "middle", B for "bottom", C for "center"
-    // Second letter: L for "left", R for "right", T for "top", B for "Bottom"
-
+   if(uboard.get(row, col) > 0 && uboard.get(row, col) < 100) {
+    sboard.set(row, col, uboard.get(row, col));
+    
+   } else {
     // Special case of the top edge
     if (row == 0) {
       // Special case of the upper left corner
@@ -117,71 +119,65 @@ public class MinesweeperVisible {
         if (sboard.get(row, col + 1) == null) {
           if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
+            
             checkNums(uboard, sboard, row, col + 1);
           } else {
             sboard.set(row, col + 1, uboard.get(row, col + 1));
+            
           } // endif
         } // endif - mid right
         if (sboard.get(row + 1, col + 1) == null) {
           if (uboard.get(row + 1, col + 1) == 0) {
             sboard.set(row + 1, col + 1, 0);
+            
             checkNums(uboard, sboard, row + 1, col + 1);
           } else {
             sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
+            
           } // endif
         } // endif - bottom right
         if (sboard.get(row + 1, col) == null) {
           if (uboard.get(row + 1, col) == 0) {
             sboard.set(row + 1, col, 0);
+            
             checkNums(uboard, sboard, row + 1, col);
           } else {
             sboard.set(row + 1, col, uboard.get(row + 1, col));
+            
           } // endif
         } // endif - center bottom
           // Special case of the upper right corner
-      } 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+      }
       
       else if (col == sboard.width() - 1) {
         if (sboard.get(row, col - 1) == null) {
           if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
+            
             checkNums(uboard, sboard, row, col - 1);
           } else {
             sboard.set(row, col - 1, uboard.get(row, col - 1));
+            
           } // endif
         } // endif - middle left
         if (sboard.get(row + 1, col - 1) == null) {
           if (uboard.get(row + 1, col - 1) == 0) {
             sboard.set(row + 1, col - 1, 0);
+            
             checkNums(uboard, sboard, row + 1, col - 1);
           } else {
             sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
+            
           } // endif
         } // endif - bottom left
         if (sboard.get(row + 1, col) == null) {
           if (uboard.get(row + 1, col) == 0) {
             sboard.set(row + 1, col, 0);
+            
             checkNums(uboard, sboard, row + 1, col);
           } else {
             sboard.set(row + 1, col, uboard.get(row + 1, col));
+            
           } // endif
         } // endif - center bottom
           // The default upper edge
@@ -189,41 +185,51 @@ public class MinesweeperVisible {
         if (sboard.get(row, col - 1) == null) {
           if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
+            
             checkNums(uboard, sboard, row, col - 1);
           } else {
             sboard.set(row, col - 1, uboard.get(row, col - 1));
+            
           } // endif
         } // endif - middle left
         if (sboard.get(row + 1, col - 1) == null) {
           if (uboard.get(row + 1, col - 1) == 0) {
             sboard.set(row + 1, col - 1, 0);
+            
             checkNums(uboard, sboard, row + 1, col - 1);
           } else {
             sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
+            
           } // endif
         } // endif - bottom left
         if (sboard.get(row + 1, col) == null) {
           if (uboard.get(row + 1, col) == 0) {
             sboard.set(row + 1, col, 0);
+            
             checkNums(uboard, sboard, row + 1, col);
           } else {
             sboard.set(row + 1, col, uboard.get(row + 1, col));
+            
           } // endif
         } // endif - center bottom
         if (sboard.get(row, col + 1) == null) {
           if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
+            
             checkNums(uboard, sboard, row, col + 1);
           } else {
             sboard.set(row, col + 1, uboard.get(row, col + 1));
+            
           } // endif
         } // endif - mid right
         if (sboard.get(row + 1, col + 1) == null) {
           if (uboard.get(row + 1, col + 1) == 0) {
             sboard.set(row + 1, col + 1, 0);
+            
             checkNums(uboard, sboard, row + 1, col + 1);
           } else {
             sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
+            
           } // endif
         } // endif - bottom right
       } // endif - top row
@@ -235,25 +241,31 @@ public class MinesweeperVisible {
         if (sboard.get(row - 1, col) == null) {
           if (uboard.get(row - 1, col) == 0) {
             sboard.set(row - 1, col, 0);
+            
             checkNums(uboard, sboard, row - 1, col);
           } else {
             sboard.set(row - 1, col, uboard.get(row - 1, col));
+            
           } // endif
         } // endif - center top
         if (sboard.get(row, col + 1) == null) {
           if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
+            
             checkNums(uboard, sboard, row, col + 1);
           } else {
             sboard.set(row, col + 1, uboard.get(row, col + 1));
+            
           } // endif
         } // endif - mid right
         if (sboard.get(row - 1, col + 1) == null) {
           if (uboard.get(row - 1, col + 1) == 0) {
             sboard.set(row - 1, col + 1, 0);
+            
             checkNums(uboard, sboard, row - 1, col + 1);
           } else {
             sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
+            
           } // endif
         } // endif - upper right
         // Lower right corner
@@ -261,25 +273,31 @@ public class MinesweeperVisible {
         if (sboard.get(row - 1, col) == null) {
           if (uboard.get(row - 1, col) == 0) {
             sboard.set(row - 1, col, 0);
+            
             checkNums(uboard, sboard, row - 1, col);
           } else {
             sboard.set(row - 1, col, uboard.get(row - 1, col));
+            
           } // endif
         } // endif - center top
         if (sboard.get(row, col - 1) == null) {
           if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
+            
             checkNums(uboard, sboard, row, col - 1);
           } else {
             sboard.set(row, col - 1, uboard.get(row, col - 1));
+            
           } // endif
         } // endif - mid left
         if (sboard.get(row - 1, col - 1) == null) {
           if (uboard.get(row - 1, col + 1) == 0) {
             sboard.set(row - 1, col - 1, 0);
+            
             checkNums(uboard, sboard, row - 1, col - 1);
           } else {
             sboard.set(row - 1, col - 1, uboard.get(row - 1, col + 1));
+            
           } // endif
         } // endif - upper right
         /// Bottom row
@@ -287,41 +305,51 @@ public class MinesweeperVisible {
         if (sboard.get(row - 1, col) == null) {
           if (uboard.get(row - 1, col) == 0) {
             sboard.set(row - 1, col, 0);
+            
             checkNums(uboard, sboard, row - 1, col);
           } else {
             sboard.set(row - 1, col, uboard.get(row - 1, col));
+            
           } // endif
         } // endif - center top
         if (sboard.get(row, col + 1) == null) {
           if (uboard.get(row, col + 1) == 0) {
             sboard.set(row, col + 1, 0);
+            
             checkNums(uboard, sboard, row, col + 1);
           } else {
             sboard.set(row, col + 1, uboard.get(row, col + 1));
+            
           } // endif
         } // endif - mid right
         if (sboard.get(row - 1, col + 1) == null) {
           if (uboard.get(row - 1, col + 1) == 0) {
             sboard.set(row - 1, col + 1, 0);
+            
             checkNums(uboard, sboard, row - 1, col + 1);
           } else {
             sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
+            
           } // endif
         } // endif - upper right
         if (sboard.get(row, col - 1) == null) {
           if (uboard.get(row, col - 1) == 0) {
             sboard.set(row, col - 1, 0);
+            
             checkNums(uboard, sboard, row, col - 1);
           } else {
             sboard.set(row, col - 1, uboard.get(row, col - 1));
+            
           } // endif
         } // endif - mid left
         if (sboard.get(row - 1, col - 1) == null) {
           if (uboard.get(row - 1, col - 1) == 0) {
             sboard.set(row - 1, col - 1, 0);
+            
             checkNums(uboard, sboard, row - 1, col - 1);
           } else {
             sboard.set(row - 1, col - 1, uboard.get(row - 1, col - 1));
+            
           } // endif
         } // endif - upper left
       } // endif
@@ -330,41 +358,51 @@ public class MinesweeperVisible {
       if (sboard.get(row - 1, col) == null) {
         if (uboard.get(row - 1, col) == 0) {
           sboard.set(row - 1, col, 0);
+          
           checkNums(uboard, sboard, row - 1, col);
         } else {
           sboard.set(row - 1, col, uboard.get(row - 1, col));
+          
         } // endif
       } // endif - center top
       if (sboard.get(row + 1, col) == null) {
         if (uboard.get(row + 1, col) == 0) {
           sboard.set(row + 1, col, 0);
+          
           checkNums(uboard, sboard, row + 1, col);
         } else {
           sboard.set(row + 1, col, uboard.get(row + 1, col));
+          
         } // endif
       } // endif - center bottom
       if (sboard.get(row - 1, col + 1) == null) {
         if (uboard.get(row - 1, col + 1) == 0) {
           sboard.set(row - 1, col + 1, 0);
+          
           checkNums(uboard, sboard, row - 1, col + 1);
         } else {
           sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
+          
         } // endif
       } // endif - upper right
       if (sboard.get(row, col + 1) == null) {
         if (uboard.get(row, col + 1) == 0) {
           sboard.set(row, col + 1, 0);
+          
           checkNums(uboard, sboard, row, col + 1);
         } else {
           sboard.set(row, col + 1, uboard.get(row, col + 1));
+          
         } // endif
       } // endif - mid right
       if (sboard.get(row + 1, col + 1) == null) {
         if (uboard.get(row + 1, col + 1) == 0) {
           sboard.set(row + 1, col + 1, 0);
+          
           checkNums(uboard, sboard, row + 1, col + 1);
         } else {
           sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
+          
         } // endif
       } // endif - bottom right
       // Right col
@@ -372,41 +410,51 @@ public class MinesweeperVisible {
       if (sboard.get(row - 1, col) == null) {
         if (uboard.get(row - 1, col) == 0) {
           sboard.set(row - 1, col, 0);
+          
           checkNums(uboard, sboard, row - 1, col);
         } else {
           sboard.set(row - 1, col, uboard.get(row - 1, col));
+          
         } // endif
       } // endif - center top
       if (sboard.get(row + 1, col) == null) {
         if (uboard.get(row + 1, col) == 0) {
           sboard.set(row + 1, col, 0);
+          
           checkNums(uboard, sboard, row + 1, col);
         } else {
           sboard.set(row + 1, col, uboard.get(row + 1, col));
+          
         } // endif
       } // endif - center bottom
       if (sboard.get(row - 1, col - 1) == null) {
         if (uboard.get(row - 1, col - 1) == 0) {
           sboard.set(row - 1, col - 1, 0);
+          
           checkNums(uboard, sboard, row - 1, col - 1);
         } else {
           sboard.set(row - 1, col - 1, uboard.get(row - 1, col - 1));
+          
         } // endif
       } // endif - upper left
       if (sboard.get(row, col - 1) == null) {
         if (uboard.get(row, col - 1) == 0) {
           sboard.set(row, col - 1, 0);
+          
           checkNums(uboard, sboard, row, col - 1);
         } else {
           sboard.set(row, col - 1, uboard.get(row, col - 1));
+          
         } // endif
       } // endif - mid left
       if (sboard.get(row + 1, col - 1) == null) {
         if (uboard.get(row + 1, col - 1) == 0) {
           sboard.set(row + 1, col - 1, 0);
+          
           checkNums(uboard, sboard, row + 1, col - 1);
         } else {
           sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
+          
         } // endif
       } // endif - bottom left
       // Literally every other case
@@ -414,69 +462,100 @@ public class MinesweeperVisible {
       if (sboard.get(row - 1, col) == null) {
         if (uboard.get(row - 1, col) == 0) {
           sboard.set(row - 1, col, 0);
+          
           checkNums(uboard, sboard, row - 1, col);
         } else {
           sboard.set(row - 1, col, uboard.get(row - 1, col));
+          
         } // endif
       } // endif - center top
       if (sboard.get(row + 1, col) == null) {
         if (uboard.get(row + 1, col) == 0) {
           sboard.set(row + 1, col, 0);
+          
           checkNums(uboard, sboard, row + 1, col);
         } else {
           sboard.set(row + 1, col, uboard.get(row + 1, col));
+          
         } // endif
       } // endif - center bottom
       if (sboard.get(row - 1, col - 1) == null) {
         if (uboard.get(row - 1, col - 1)== 0) {
           sboard.set(row - 1, col - 1, 0);
+          
           checkNums(uboard, sboard, row - 1, col - 1);
         } else {
           sboard.set(row - 1, col - 1, sboard.get(row - 1, col - 1));
+          
         } // endif
       } // endif - upper left
       if (sboard.get(row, col - 1) == null) {
         if (uboard.get(row, col - 1) == 0) {
           sboard.set(row, col - 1, 0);
+          
           checkNums(uboard, sboard, row, col - 1);
         } else {
           sboard.set(row, col - 1, uboard.get(row, col - 1));
+          
         } // endif
       } // endif - mid left
       if (sboard.get(row + 1, col - 1) == null) {
         if (uboard.get(row + 1, col - 1) == 0) {
           sboard.set(row + 1, col - 1, 0);
+          
           checkNums(uboard, sboard, row + 1, col - 1);
         } else {
           sboard.set(row + 1, col - 1, uboard.get(row + 1, col - 1));
+          
         } // endif
       } // endif - bottom left
       if (sboard.get(row - 1, col + 1) == null) {
         if (uboard.get(row - 1, col + 1) == 0) {
           sboard.set(row - 1, col + 1, 0);
+          
           checkNums(uboard, sboard, row - 1, col + 1);
         } else {
           sboard.set(row - 1, col + 1, uboard.get(row - 1, col + 1));
+          
         } // endif
       } // endif - upper right
       if (sboard.get(row, col + 1) == null) {
         if (uboard.get(row, col + 1) == 0) {
           sboard.set(row, col + 1, 0);
+          
           checkNums(uboard, sboard, row, col + 1);
         } else {
           sboard.set(row, col + 1, uboard.get(row, col + 1));
+          
         } // endif
       } // endif - mid right
       if (sboard.get(row + 1, col + 1) == null) {
         if (uboard.get(row + 1, col + 1) == 0) {
           sboard.set(row + 1, col + 1, 0);
+          
           checkNums(uboard, sboard, row + 1, col + 1);
         } else {
           sboard.set(row + 1, col + 1, uboard.get(row + 1, col + 1));
+          
         } // endif
       } // endif - bottom right
     } // endif
+   } //endif
   } // checkNums(Matrix<Integer>, int, int)
+
+public static int numNul(Matrix<Integer> sboard) {
+  int aba = 0;
+  for(int i = 0; i < sboard.height(); i++){
+    for(int k = 0; k < sboard.width(); k++){
+      if(sboard.get(i, k) == null){
+        aba++;
+      }
+    }
+  }
+  return aba;
+}
+
+
 
   /**
    * The main part of the program that processes user input for the game.
@@ -575,16 +654,24 @@ public class MinesweeperVisible {
         } // catches
 
       } // try/catch
-
+      
+      
       boolean done = false;
       while (!done) {
         if (hasBomb(row, col, uboard)) {
           done = true;
           printResults(pen, uboard);
           pen.println("You died :'( ");
+          return;
         } else {
-          checkNums(uboard, sboard, row, col);
-          Matrix.print(pen, sboard);
+        checkNums(uboard, sboard, row, col);
+         int aaa = numNul(sboard);
+         if(aaa == (width * height)/6) {
+          printResults(pen, uboard);
+          pen.println("YOU WON!!!! :O  :) ");
+          return;
+        }
+          Matrix.print(pen, sboard, true);
           pen.println("Good job, you didn't die :) now hit return then pick another box.");
           badInput = true;
           userInput = eyes.readLine();
@@ -609,7 +696,13 @@ public class MinesweeperVisible {
               badInput = true;
               continue;
             } // catches
-    
+
+            
+            // if(aaa == (width * height)/6) {
+            //   printResults(pen, uboard);
+            //   pen.println("YOU WON!!!! :O  :) ");
+            //   return;
+            // }
           } // try/catch
         } // endif
       } // while
