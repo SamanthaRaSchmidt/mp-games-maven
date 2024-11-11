@@ -8,6 +8,8 @@ import java.util.Random;
 /**
  * Creates a matrix that will not be shown. This will have the randomly generated mine placement and
  * calculate the number of mines around a cell.
+ * @author Sam Schmidt
+ * @author Jenifer Silva
  */
 public class Underlying {
   // +----------------+----------------------------------------------
