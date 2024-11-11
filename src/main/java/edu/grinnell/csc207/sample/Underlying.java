@@ -6,8 +6,8 @@ import edu.grinnell.csc207.util.MatrixV0;
 import java.util.Random;
 
 /**
- * Creates a matrix that will not be shown. This will have the randomly generated
- * mine placement and calculate the number of mines around a cell.
+ * Creates a matrix that will not be shown. This will have the randomly generated mine placement and
+ * calculate the number of mines around a cell.
  */
 public class Underlying {
   // +----------------+----------------------------------------------
@@ -38,15 +38,13 @@ public class Underlying {
 
   /**
    * Searches the array for an equal value.
-   * @param arr
-   *  The array to search through.
-   * @param val
-   *  The value searching for.
+   * @param arr The array to search through.
+   * @param val The value searching for.
    * @return true if found, false otherwise.
    */
   public static boolean searchArray(Integer[] arr, int val) {
     for (int i = 0; i < arr.length; i++) {
-      if(arr[i] == null) {
+      if (arr[i] == null) {
         return false;
       } else if (arr[i] == val) {
         return true;
@@ -57,8 +55,7 @@ public class Underlying {
 
   /**
    * Checks if the array is full.
-   * @param arr
-   *  The array to check.
+   * @param arr The array to check.
    * @return true if full, false otherwise.
    */
   public static boolean isFull(Integer[] arr) {
@@ -75,14 +72,10 @@ public class Underlying {
   // +--------------+
 
   /**
-   * Checks the 8 (or less if an edge square) surrounding squares for mines to
-   * calculate the number.
-   * @param board
-   *              The matrix with mines placed.
-   * @param row
-   *              The row of the square to be checked.
-   * @param col
-   *              The col of the square to be checked.
+   * Checks the 8 (or less if an edge square) surrounding squares for mines to calculate the number.
+   * @param board The matrix with mines placed.
+   * @param row The row of the square to be checked.
+   * @param col The col of the square to be checked.
    */
   public static void checkMines(Matrix<Integer> board, int row, int col) {
     Integer numMines = 0;
@@ -129,7 +122,7 @@ public class Underlying {
           } // endif
           board.set(row, col, numMines);
         } // endif
-      }  else if (row == board.height() - 1) {
+      } else if (row == board.height() - 1) {
         if (col == 0) {
           if (board.get(row - 1, col) == 100) {
             numMines++;
@@ -206,37 +199,35 @@ public class Underlying {
           numMines++;
         } // endif
         board.set(row, col, numMines);
-      } // Literally every other case
-       else {
+      } else {
         for (int i = 0; i < 3; i++) {
           if (board.get(row - 1, ((col - 1) + i)) == 100) {
             numMines++;
           } // endif
         } // for
-      for (int i = 0; i < 3; i++) {
-        if (board.get(row + 1, ((col - 1) + i)) == 100) {
+        for (int i = 0; i < 3; i++) {
+          if (board.get(row + 1, ((col - 1) + i)) == 100) {
+            numMines++;
+          } // endif
+        } // for
+
+        if (board.get(row, (col - 1)) == 100) {
           numMines++;
         } // endif
-      } // for
 
-      if (board.get(row, (col - 1)) == 100) {
-        numMines++;
-      } // endif
+        if (board.get(row, (col + 1)) == 100) {
+          numMines++;
+        } // endif
 
-      if (board.get(row, (col + 1)) == 100) {
-        numMines++;
-      } // endif
-
-      board.set(row, col, numMines);
-    } // endif block
-  } } // checkMines(Matrix<Integer>, int, int)
+        board.set(row, col, numMines);
+      } // endif block
+    } //if
+  } // checkMines(Matrix<Integer>, int, int)
 
   /**
    * Converts an Integer to a row and col to add mines to the board.
-   * @param board
-   *  The underlying board the mines will be set in.
-   * @param val
-   *  The random Integer that will be turned into a row and col.
+   * @param board The underlying board the mines will be set in.
+   * @param val The random Integer that will be turned into a row and col.
    */
   public static void setMine(Matrix<Integer> board, Integer val) {
     int row = val / board.height();
@@ -250,10 +241,8 @@ public class Underlying {
   /**
    * Sets up the board with randomized bombs.
    *
-   * @param width
-   *               The width of the gameboard.
-   * @param height
-   *               The height of the game board.
+   * @param width The width of the gameboard.
+   * @param height The height of the game board.
    * @return the randomized matrix board.
    */
   static Matrix<Integer> setupBoard(int width, int height) {
