@@ -75,11 +75,11 @@ public class MinesweeperVisible {
         sboard.set(i, k, null);
       } // for
     } // for
+
   } // printProcess(PrintWriter, Matrix<Integer>)
 
   /**
    * Checks if the given spot has a bomb.
-   *
    * @param row The row of the spot.
    * @param col The col of the spot.
    * @param uboard The underlying board that holds the mines/bombs.

@@ -1,1 +1,2 @@
 For our redo we made it so you could change the size of the board by using the command "-w # -h #" in the command line.
+Brought style check down to 5 violations
