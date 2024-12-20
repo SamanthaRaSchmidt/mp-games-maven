@@ -67,7 +67,9 @@ public class MinesweeperVisible {
    * @param board The game board while playing the game.
    */
   static void printProcess(PrintWriter pen, Matrix<Integer> board) {
-    Matrix<Integer> sboard = new MatrixV0<Integer>(Underlying.WIDTH_DEFAULT, Underlying.HEIGHT_DEFAULT);
+    int width = Underlying.WIDTH_DEFAULT;
+    int height = Underlying.HEIGHT_DEFAULT;
+    Matrix<Integer> sboard = new MatrixV0<Integer>(width, height);
     for (int i = 0; i < sboard.height(); i++) {
       for (int k = 0; k < sboard.width(); k++) {
         sboard.set(i, k, null);
