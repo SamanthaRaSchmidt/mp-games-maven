@@ -67,7 +67,7 @@ public class MinesweeperVisible {
    * @param board The game board while playing the game.
    */
   static void printProcess(PrintWriter pen, Matrix<Integer> board) {
-    Matrix<Integer> sboard = new MatrixV0<Integer>(10, 10);
+    Matrix<Integer> sboard = new MatrixV0<Integer>(Underlying.WIDTH_DEFAULT, Underlying.HEIGHT_DEFAULT);
     for (int i = 0; i < sboard.height(); i++) {
       for (int k = 0; k < sboard.width(); k++) {
         sboard.set(i, k, null);
@@ -554,8 +554,8 @@ public class MinesweeperVisible {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
-    int defaultHeight = 10;
-    int defaultWidth = 10;
+    int defaultHeight = Underlying.HEIGHT_DEFAULT;
+    int defaultWidth = Underlying.WIDTH_DEFAULT;
     PrintWriter pen = new PrintWriter(System.out, true);
     BufferedReader eyes = new BufferedReader(new InputStreamReader(System.in));
 
